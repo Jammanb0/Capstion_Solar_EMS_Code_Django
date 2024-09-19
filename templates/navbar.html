@@ -1,0 +1,33 @@
+<!-- Responsive navbar-->
+<nav class="navbar navbar-expand-lg navbar-light ">
+    <div class="container-fluid px-2 mt-3" >
+        <a class="title" href="/">H!EMS</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="/">홈</a></li>
+                <li class="nav-item"><a class="nav-link" href="/battery/">배터리 충전 현황</a></li>
+                <li class="nav-item"><a class="nav-link" href="/lamp/">가로등 점등 현황</a></li>
+                <li class="nav-item"><a class="nav-link" href="/data/">데이터</a></li>
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link logout-link" href="{% url 'accounts:login' %}" style="color:#828282">로그아웃</a></li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link login-link" href="{% url 'accounts:login' %}">login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var currentPath = window.location.pathname;
+            var navLinks = document.querySelectorAll('.nav-link');
+
+            navLinks.forEach(function(link) {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+<hr>

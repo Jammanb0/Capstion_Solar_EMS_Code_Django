@@ -1,0 +1,324 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<br>
+<div class="containers">
+    <div class="left-images">
+        <section class ="box-line" style="width:40vw; ">
+            <h3> 배터리 정보 </h3>
+
+            <hr>
+            <br>
+            <div class="battery-story" style="margin-top:0px; ">
+                    <p style="margin-bottom: 0px;">
+                        EMS 시스템상 분류 : 단기 배터리 <br>
+                        종류 : 리튬-이온 배터리 <br>
+                        최대 용량 : 9916.665kWh<br>
+                        계절별 한계 용량 :
+                    </p>
+                    <!-- 두 줄의 표 추가 -->
+                    <table class="capacity-table">
+                        <thead>
+                            <tr>
+                                <th>계절</th>
+                                <th>표준 최대 용량 (kWh)</th>
+                                <th>효율 최대 용량 (kWh)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>겨울</td>
+                                <td>7,933.332</td>
+                                <td>8,924.9985</td>
+                            </tr>
+                            <tr>
+                                <td style="width:70px;">봄 / 가을</td>
+                                <td>7,437.49875</td>
+                                <td>8,429.16525</td>
+                            </tr>
+                            <tr>
+                                <td>여름</td>
+                                <td>6,941.6655</td>
+                                <td>7,933.332</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-bottom: 0px;">
+                        충,방전 효율 : <br>
+                    </p>
+                    <table class="capacity-table">
+                        <thead>
+                            <tr>
+                                <th>충전 효율</th>
+                                <th>공급 효율</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>90%</td>
+                                <td>99.7%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            <br><br>
+            <hr style="color:#d2d2d2;">
+            <br><br>
+            <div class="battery-story" style="margin-top:0px;">
+                <p style="margin-bottom: 0px;">
+                        EMS 시스템상 분류 : 장기 배터리  <br>
+                        종류 : 수소 배터리  <br>
+                        최대 용량 : 1000000kWh<br>
+                        계절별 한계 용량 :
+                </p>
+                <!-- 두 줄의 표 추가 -->
+                    <table class="capacity-table">
+                        <thead>
+                            <tr>
+                                <th>계절</th>
+                                <th>표준 최대 용량 (kWh)</th>
+                                <th>효율 최대 용량 (kWh)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>겨울</td>
+                                <td>7,933.332</td>
+                                <td>8,924.9985</td>
+                            </tr>
+                            <tr>
+                                <td style="width:70px;">봄 / 가을</td>
+                                <td>7,437.49875</td>
+                                <td>8,429.16525</td>
+                            </tr>
+                            <tr>
+                                <td>여름</td>
+                                <td>6,941.6655</td>
+                                <td>7,933.332</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-bottom: 0px;">
+                        충,방전 효율 : <br>
+                    </p>
+                    <table class="capacity-table">
+                        <thead>
+                            <tr>
+                                <th>충전 효율</th>
+                                <th>공급 효율</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>65.8%</td>
+                                <td>60%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                <br>
+                </div>
+        </section>
+        <br><br>
+    </div>
+    <div class="right-images">
+    <div class="right-data">
+        <section class ="box-line" style="width:48vw;">
+            <div class="data-container">
+                <h2 style="text-align: center; margin-bottom: 15px; color: #333; font-size: 18px;">데이터 자료</h2>
+
+                <div class="search-container">
+                    <input type="text" id="searchInput" class="search-input" placeholder="검색">
+                    <span class="search-icon">🔍</span>
+                </div>
+
+                <ul id="dataList" class="data-list">
+                    <!-- 데이터 항목들이 여기에 동적으로 추가됩니다 -->
+                </ul>
+            </div>
+        </section>
+    </div>
+        <br><br>
+    <section class ="box-line" style="width:48vw;">
+            <h3> 가로등 </h3>
+            <hr style="width:45vw; margin-left: inherit;">
+            <p> 가로등 개수 : 400 대 <br>
+                가로등 한 대 기준 전력 소비량 : 15W <br>
+                가로등 계절별 점등 시간 (AI판단) <br>
+            </p>
+        <table class="capacity-table" style="width:95%;">
+                        <thead>
+                            <tr>
+                                <th>계절</th>
+                                <th >가로등 켜지는 시간</th>
+                                <th>가로등 꺼지는 시각</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>겨울</td>
+                                <td>17:00</td>
+                                <td>07:00</td>
+                            </tr>
+                            <tr>
+                                <td style="width:70px;">봄 / 가을</td>
+                                <td>18:00</td>
+                                <td>06:00</td>
+                            </tr>
+                            <tr>
+                                <td>여름</td>
+                                <td>20:00</td>
+                                <td>05:00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+        <br>
+    </section>
+    </div>
+</div>
+
+<!-- 사용자 정의 모달 -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span>파일 처리 선택</span>
+            <span class="close-button" id="closeModal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p>파일을 열람하시겠습니까?</p>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-button" id="confirmBtn">확인</button>
+            <button class="modal-button download" id="downloadBtn">다운로드</button>
+            <button class="modal-button cancel" id="cancelBtn">취소</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const resources = [
+        '의사결정 AI 예측 결과(2024).csv',
+        '의사결정 AI 학습용 데이터 셋 2 (2024).csv',
+        '의사결정 AI 학습용 데이터 셋 1 (2023).csv',
+        '태양광 발전량 예측값 (2024).csv',
+        '태양광 발전량 예측값 (2023).csv',
+        '태양광 발전량 예측 AI 학습용 데이터 셋 (기상청 데이터 및 태양광 발전량 통합, 2024).csv',
+        '태양광 발전량 예측 AI 학습용 데이터 셋 (기상청 데이터 및 태양광 발전량 통합, 2023).csv',
+        '알고리즘 비교 분석 자료 (태양광 발전 기반 가로등 EMS의 AI 최적화 설계 및 성능 비교 분석).pdf',
+    ];
+
+    const searchInput = document.getElementById('searchInput');
+    const dataList = document.getElementById('dataList');
+    const modal = document.getElementById('myModal');
+    const modalContent = document.querySelector('.modal-content');
+    const closeModal = document.getElementById('closeModal');
+    const confirmBtn = document.getElementById('confirmBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+    let currentResource;
+
+    function renderResources(filteredResources) {
+        dataList.innerHTML = '';
+        filteredResources.forEach(resource => {
+            const li = document.createElement('li');
+            li.className = 'data-item';
+            li.textContent = resource;
+            li.addEventListener('click', function() {
+                currentResource = resource;
+                modalContent.classList.add('show');
+                modal.style.display = 'block';
+            });
+            dataList.appendChild(li);
+        });
+
+        if (filteredResources.length === 0) {
+            const li = document.createElement('li');
+            li.className = 'data-item';
+            li.textContent = '검색 결과가 없습니다.';
+            dataList.appendChild(li);
+        }
+    }
+
+    searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        const filteredResources = resources.filter(resource =>
+            resource.toLowerCase().includes(searchTerm)
+        );
+        renderResources(filteredResources);
+    });
+
+    confirmBtn.addEventListener('click', function() {
+        const fileExtension = currentResource.split('.').pop().toLowerCase();
+        const fileName = encodeURIComponent(currentResource);
+        const fileUrl = `/open_file/${fileName}`;
+
+        if (fileExtension === 'pdf') {
+            window.open(fileUrl, '_blank');
+        } else if (fileExtension === 'csv') {
+            fetch(fileUrl)
+                .then(response => response.text())
+                .then(data => {
+                    const csvData = Papa.parse(data, { header: true });
+                    let html = '<table border="1" style="width: 100%; border-collapse: collapse;"><thead><tr>';
+                    Object.keys(csvData.data[0]).forEach(key => {
+                        html += `<th>${key}</th>`;
+                    });
+                    html += '</tr></thead><tbody>';
+                    csvData.data.forEach(row => {
+                        html += '<tr>';
+                        Object.values(row).forEach(value => {
+                            html += `<td>${value}</td>`;
+                        });
+                        html += '</tr>';
+                    });
+                    html += '</tbody></table>';
+                    const newWindow = window.open('', '_blank');
+                    newWindow.document.write('<html><head><title>' + currentResource + '</title></head><body>' + html + '</body></html>');
+                    newWindow.document.close();
+                })
+                .catch(error => {
+                    console.error('Error loading CSV file:', error);
+                    alert('CSV 파일을 열 수 없습니다.');
+                });
+        } else {
+            alert('지원하지 않는 파일 형식입니다.');
+        }
+
+        modal.style.display = 'none';
+        modalContent.classList.remove('show');
+    });
+
+    downloadBtn.addEventListener('click', function() {
+        const fileName = encodeURIComponent(currentResource);
+        const fileUrl = `/open_file/${fileName}`;
+        window.location.href = fileUrl;
+        modal.style.display = 'none';
+        modalContent.classList.remove('show');
+    });
+
+    cancelBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+        modalContent.classList.remove('show');
+    });
+
+    closeModal.addEventListener('click', function() {
+        modal.style.display = 'none';
+        modalContent.classList.remove('show');
+    });
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+            modalContent.classList.remove('show');
+        }
+    };
+
+    renderResources(resources);
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,295 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<br>
+
+<div class="containers">
+    <div class="left-images">
+        <section class ="box-line">
+            <div class="battery-container" style="width: 750px; padding-bottom:20px; ">
+                <div class="battery-box1" style="padding-left:0px; ">
+                    <h3 class="h3-text">리튬 배터리 충전 현황(단기)</h3>
+                    <div class="battery-img" style="margin-bottom:10px;">
+                        <div class="battery-icon">
+                            <div class="battery-level" style="height: 0;"></div>
+                        </div>
+                        <p class="BatteryText">{{ short_battery_percentage|floatformat:2 }}%</p>
+                    </div>
+                </div>
+                <div class="battery-story">
+                    <p style="margin-bottom: 0px;">
+                        EMS 시스템상 분류 : 단기 배터리 <br>
+                        종류 : 리튬-이온 배터리 <br>
+                        최대 용량 : 9916.665kWh<br>
+                        계절별 한계 용량 :
+                    </p>
+                    <!-- 두 줄의 표 추가 -->
+                    <table class="capacity-table">
+                        <thead>
+                            <tr>
+                                <th>계절</th>
+                                <th>표준 최대 용량 (kWh)</th>
+                                <th>효율 최대 용량 (kWh)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>겨울</td>
+                                <td>7,933.332</td>
+                                <td>8,924.9985</td>
+                            </tr>
+                            <tr>
+                                <td style="width:70px;">봄 / 가을</td>
+                                <td>7,437.49875</td>
+                                <td>8,429.16525</td>
+                            </tr>
+                            <tr>
+                                <td>여름</td>
+                                <td>6,941.6655</td>
+                                <td>7,933.332</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-bottom: 0px;">
+                        충,방전 효율 : <br>
+                    </p>
+                    <table class="capacity-table">
+                        <thead>
+                            <tr>
+                                <th>충전 효율</th>
+                                <th>공급 효율</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>90%</td>
+                                <td>99.7%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <br><br><br>
+        <section class ="box-line">
+            <div class="battery-container" style="width: 750px; padding-bottom:20px;">
+                <div class="battery-box2" style="padding-left:0px;">
+                    <h3 class="h3-text" >H2 전지 충전 현황(장기)</h3>
+                    <div class="battery-img">
+                        <div class="battery-icon long-battery">
+                            <div class="battery-level" style="height: 0;"></div>
+                        </div>
+                    <p class="BatteryText">{{ long_battery_percentage|floatformat:2 }}%</p>
+                    </div>
+                </div>
+                <div class="battery-story">
+                    <p style="margin-bottom: 0px;">
+                        EMS 시스템상 분류 : 장기 배터리  <br>
+                        종류 : 수소 배터리  <br>
+                        최대 용량 : 1000000kWh<br>
+                        계절별 한계 용량 :
+                    </p>
+                    <!-- 두 줄의 표 추가 -->
+                    <table class="capacity-table">
+                        <thead>
+                            <tr>
+                                <th>계절</th>
+                                <th>표준 최대 용량 (kWh)</th>
+                                <th>효율 최대 용량 (kWh)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>겨울</td>
+                                <td>7,933.332</td>
+                                <td>8,924.9985</td>
+                            </tr>
+                            <tr>
+                                <td style="width:70px;">봄 / 가을</td>
+                                <td>7,437.49875</td>
+                                <td>8,429.16525</td>
+                            </tr>
+                            <tr>
+                                <td>여름</td>
+                                <td>6,941.6655</td>
+                                <td>7,933.332</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-bottom: 0px;">
+                        충,방전 효율 : <br>
+                    </p>
+                    <table class="capacity-table">
+                        <thead>
+                            <tr>
+                                <th>충전 효율</th>
+                                <th>공급 효율</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>65.8%</td>
+                                <td>60%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="right-images">
+        <section class ="box-line">
+            <h3>배터리 충, 방전 예측</h3><hr width="500" align="left">
+            <div>
+                <h4 style="margin-top: -5px; margin-bottom: 1px">날짜를 선택하세요:</h4>
+                <form id="dateForm" method="get" action="{% url 'mainpage' %}">
+                    <label for="date" style="padding-left: 20px;">날짜 선택:</label>
+                    <input type="date" id="date" name="date" required>
+                    <button type="submit">조회</button>
+                </form>
+            </div><br>
+        <div class="battery-container1">
+                <!-- 단기 배터리 차트 -->
+                <h4>단기 배터리</h4>
+                <div class="chart-container2">
+                    <canvas id="shortBatteryChart" class="chart-2"></canvas>
+                </div>
+            <br>
+
+                <!-- 장기 배터리 차트 -->
+                <h4>장기 배터리</h4>
+                <div class="chart-container2">
+                    <canvas id="longBatteryChart" class="chart-2"></canvas>
+                </div>
+        </div>
+    </section>
+        <br><br>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+    // 리튬 배터리 (단기)
+    var shortBatteryLevel = document.querySelector('.battery-box1 .battery-level');
+    var shortBatteryPercentage = {{ short_battery_percentage }}; // 서버에서 전달된 값 사용
+    shortBatteryLevel.style.height = shortBatteryPercentage + '%'; // 높이를 설정하여 애니메이션 효과 적용
+
+    // H2 배터리 (장기)
+    var longBatteryLevel = document.querySelector('.battery-box2 .battery-level');
+    var longBatteryPercentage = {{ long_battery_percentage }}; // 서버에서 전달된 값 사용
+    longBatteryLevel.style.height = longBatteryPercentage + '%'; // 높이를 설정하여 애니메이션 효과 적용
+
+    function calculateSuggestedMax(data, percentage = 0.2) {
+        if (!data.length) return 100; // 기본 최대값 반환 (비어 있는 경우)
+        const max = Math.max(...data);
+        return max + (max * percentage); // 최대값에 비율만큼 추가
+    }
+
+
+    function calculateSuggestedMax(data, percentage = 0.2) {
+        if (!data.length) return 100; // 기본 최대값 반환 (비어 있는 경우)
+        const max = Math.max(...data);
+        return max + (max * percentage); // 최대값에 비율만큼 추가
+    }
+
+    // 단기 배터리 차트
+    var ctx2 = document.getElementById('shortBatteryChart').getContext('2d');
+    var shortBatteryChart = new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: {{ time_labels|safe }},
+            datasets: [{
+                label: '단기 배터리',
+                data: {{ short_battery|safe }},
+                backgroundColor: 'rgba(255, 99, 132, 0.3)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1,
+                fill: true
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return value + ' kWh'; // 값에 단위를 추가
+                        }
+                    },
+                    // 최대값과 데이터 사이의 여유 공간을 추가
+                    suggestedMax: calculateSuggestedMax({{ short_battery|safe }})
+                }
+            }
+        }
+    });
+
+    // 장기 배터리 차트
+    var ctx3 = document.getElementById('longBatteryChart').getContext('2d');
+    var longBatteryChart = new Chart(ctx3, {
+        type: 'line',
+        data: {
+            labels: {{ time_labels|safe }},
+            datasets: [{
+                label: '장기 배터리',
+                data: {{ long_battery|safe }},
+                backgroundColor: 'rgba(54, 162, 235, 0.3)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1,
+                fill: true
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return value + ' kWh'; // 값에 단위를 추가
+                        }
+                    },
+                    // 최대값과 데이터 사이의 여유 공간을 추가
+                    suggestedMax: calculateSuggestedMax({{ long_battery|safe }})
+                }
+            }
+        }
+    });
+
+    // 날짜 선택 폼 제출 처리
+    document.getElementById('dateForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // 기본 폼 제출 방지
+
+        var date = document.getElementById('date').value;
+
+        if (!date) {
+            alert("날짜를 선택해주세요.");
+            return;
+        }
+
+        var [year, month, day] = date.split('-');
+        month = month.padStart(2, '0');
+        day = day.padStart(2, '0');
+
+        // 연도는 2022년으로 고정
+        fetch(`/battery-data-json/?month=${month}&day=${day}`)
+            .then(response => response.json())
+            .then(data => {
+                // 단기 배터리 차트 데이터 업데이트
+                shortBatteryChart.data.labels = data.time_labels;
+                shortBatteryChart.data.datasets[0].data = data.short_battery;
+                shortBatteryChart.update();
+
+                // 장기 배터리 차트 데이터 업데이트
+                longBatteryChart.data.labels = data.time_labels;
+                longBatteryChart.data.datasets[0].data = data.long_battery;
+                longBatteryChart.update();
+            })
+            .catch(error => console.error('Error:', error));
+    });
+});
+
+</script>
+
+{% endblock %}

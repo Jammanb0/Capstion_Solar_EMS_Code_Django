@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Solar Data List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Solar Data List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>AC Power (W)</th>
+                <th>Short Battery</th>
+                <th>Long Battery</th>
+                <th>Projected Power Production</th>
+                <th>Season</th>
+                <th>Predicted Power Consumption</th>
+                <th>Storage Battery</th>
+                <th>Supply Battery</th>
+                <th>Light Control</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in solar_data_list %}
+            <tr>
+                <td>{{ data.date }}</td>
+                <td>{{ data.ac_w }}</td>
+                <td>{{ data.curr_short_battery }}</td>
+                <td>{{ data.curr_long_battery }}</td>
+                <td>{{ data.projected_power_production }}</td>
+                <td>{{ data.season }}</td>
+                <td>{{ data.predicted_power_consumption }}</td>
+                <td>{{ data.select_storage_battery }}</td>
+                <td>{{ data.select_supply_battery }}</td>
+                <td>{{ data.light_control }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

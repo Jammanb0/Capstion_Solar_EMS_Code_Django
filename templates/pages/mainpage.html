@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <img src="/static/image/Home_Main.png" alt="home" width="100%"> <hr>
+</div>
+<br>
+
+<div class="containers">
+    <div class="left-images">
+        <section class ="box-line">
+            <h3> 배터리 충전 현황 </h3>
+            <br>
+            <div class="battery-container" style="padding-left: 5%">
+                <!-- 리튬 배터리 -->
+                <div class="battery-box1" style="margin-left: 5%;">
+                    <h4 >리튬 배터리 (단기)</h4>
+                    <div class="battery-img" style="padding-left: 70px;">
+                        <div class="home">
+                            <div class="battery-icon" style="width:90px; height:160px; border: 12px solid #FFA500;">
+                                <div class="battery-level" style="height: 0;"></div>
+                            </div>
+                        </div>
+                        <p class="BatteryText">{{ short_battery_percentage|floatformat:2 }}%</p>
+                        <div class="hover-text" >전체 용량 : 9916.665kWh</div>
+                    </div>
+                </div>
+
+                <div class="vertical-line"> </div>
+                <!-- H2 배터리 -->
+                <div class="battery-box2">
+                    <h4 style="padding-left: 25px;">H2 배터리 (장기)</h4>
+                    <div class="battery-img">
+                        <div class="home">
+                            <div class="battery-icon long-battery" style="width:125px; height:160px; border: 12px solid #00BFFF;">
+                                <div class="battery-level" style="height: 0;"></div>
+                            </div>
+                        </div>
+                        <p class="BatteryText">{{ long_battery_percentage|floatformat:2 }}%</p>
+                        <div class="hover-text" >전체 용량 : 1000000kWh</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br><br><br>
+        <section class ="box-line">
+            <h3>태양광 발전량 예측</h3>
+            <br><br>
+            <div class="chart-container">
+                <canvas id="solarChart" class="chart"></canvas>
+            </div>
+            <br><br>
+        </section>
+    </div>
+    <div class="right-images">
+        <section class ="box-line" >
+            <h3>태양광 패널 설치 위치 안내</h3>
+            <div >
+                <img src="/static/image/home_map.png" alt="map" width="95%" >
+            </div>
+
+        </section>
+    </div>
+
+</div>
+
+<br><br>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    // 리튬 배터리 (단기)
+    var shortBatteryLevel = document.querySelector('.battery-box1 .battery-level');
+    var shortBatteryPercentage = {{ short_battery_percentage }}; // 서버에서 전달된 값 사용
+    shortBatteryLevel.style.height = shortBatteryPercentage + '%'; // 높이를 설정하여 애니메이션 효과 적용
+
+    // H2 배터리 (장기)
+    var longBatteryLevel = document.querySelector('.battery-box2 .battery-level');
+    var longBatteryPercentage = {{ long_battery_percentage }}; // 서버에서 전달된 값 사용
+    longBatteryLevel.style.height = longBatteryPercentage + '%'; // 높이를 설정하여 애니메이션 효과 적용
+
+    function calculateSuggestedMax(data, percentage = 0.2) {
+        if (!data.length) return 100; // 기본 최대값 반환 (비어 있는 경우)
+        const max = Math.max(...data);
+        return max + (max * percentage); // 최대값에 비율만큼 추가
+    }
+
+
+    // 태양광 발전량 차트
+    var ctx1 = document.getElementById('solarChart').getContext('2d');
+    var solarChart = new Chart(ctx1, {
+        type: 'line',
+        data: {
+            labels: {{ months|safe }},
+            datasets: [{
+                label: '태양광 발전량 예측',
+                data: {{ projected_power_production|safe }},
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1,
+                fill: true
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return value + ' kWh'; // 값에 단위를 추가
+                        }
+                    },
+                    // 최대값과 데이터 사이의 여유 공간을 추가
+                    suggestedMax: calculateSuggestedMax({{ projected_power_production|safe }})
+                }
+            }
+        }
+    });
+});
+
+</script>
+
+{% endblock %}

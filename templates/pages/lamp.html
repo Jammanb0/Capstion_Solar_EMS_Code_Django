@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+<div class="containers">
+    <img src="/static/image/lamp_map.png" alt="map2" class="responsive-image" >
+</div>
+
+<br><br>
+
+<div class="containers">
+    <div class="left-images">
+        <section class ="box-line" >
+            <h3> 계절별 가로등 점등 시간 </h3>
+            <table class="capacity-table">
+                        <thead>
+                            <tr>
+                                <th>계절</th>
+                                <th>가로등 켜지는 시간</th>
+                                <th>가로등 꺼지는 시각</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>겨울</td>
+                                <td>17:00</td>
+                                <td>07:00</td>
+                            </tr>
+                            <tr>
+                                <td style="width:70px;">봄 / 가을</td>
+                                <td>18:00</td>
+                                <td>06:00</td>
+                            </tr>
+                            <tr>
+                                <td>여름</td>
+                                <td>20:00</td>
+                                <td>05:00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+        </section>
+        <br><br>
+        <section class ="box-line" >
+            <h3> 다음 가로등 점/소등 예상 시간 안내 </h3>
+            <p> 오늘 예상 가로등 점등 시간은 20:00이며, 소등 시간은 07:00이다. </p>
+        </section>
+    </div>
+    <div class="right-image" style="width:50%">
+        <div class="left-images" style="width:30%">
+            <section class ="box-line">
+                <h3> 현재 가로등 점등 현황 </h3>
+                <p> 🟡 켜짐 | 총 400대 </p>
+            </section>
+        </div>
+        <div class="right-images" style="width:30%">
+            <section class ="box-line">
+                <h3> 가로등 강제 동작 </h3>
+                <p> * 관리자 권한 필요 </p>
+            </section>
+        </div>
+    </div>
+</div>
+<br>
+
+{% endblock %}

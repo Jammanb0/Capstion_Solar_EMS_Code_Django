@@ -1,0 +1,32 @@
+*   [33m098cdd4[m[33m ([m[1;35mrefs/stash[m[33m)[m WIP on main: 1f43d79 디자인 작업 완료
+[31m|[m[32m\[m  
+[31m|[m * [33m60cc393[m index on main: 1f43d79 디자인 작업 완료
+[31m|[m[31m/[m  
+* [33m1f43d79[m 디자인 작업 완료
+* [33m371ea12[m test
+[32m|[m * [33m6322d3b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m 태양광 발전량 예측 그래프 제작
+[32m|[m[32m/[m  
+* [33m4b31e8b[m 내장 SQL에 DB 올리기
+* [33m4c56265[m 로그인 제작
+* [33m77944a6[m 로그인 제작
+* [33m55dc4b0[m nav수정
+*   [33mdbe4ef3[m Merge branch 'main' of https://github.com/ssoogit/SolarEMS_Web
+[34m|[m[35m\[m  
+[34m|[m * [33mae6c079[m Update README.md
+[34m|[m * [33m5a66ff2[m Update README.md
+[34m|[m * [33m93e2e2e[m Update README.md
+[34m|[m * [33m0a1bae9[m Update README.md
+[34m|[m * [33ma26d657[m Update README.md
+[34m|[m * [33me674675[m Update README.md
+[34m|[m * [33m0954aa4[m Update README.md
+[34m|[m * [33mf32a820[m Update README.md
+[34m|[m * [33m4b20153[m Update README.md
+[34m|[m * [33m5dde9ff[m Update README.md
+[34m|[m * [33mf8d352e[m Update README.md
+[34m|[m * [33m130bc19[m Update README.md
+* [35m|[m [33mfad7c8a[m 뼈대 제작 완료
+[35m|[m[35m/[m  
+* [33m44cb745[m 중간 점검
+* [33m01e5212[m 뼈대에 살 붙이기
+* [33mc2eedbb[m 뼈대 제작
+* [33m380beb0[m Initial commit
