@@ -8,7 +8,7 @@ class Command(BaseCommand):
     help = 'Load data from CSV file into the database'
 
     def handle(self, *args, **kwargs):
-        file_path = r'C:\Users\sh020\Desktop\Solar_EMS_WEB\pv4_2022_final_최종_태양광 예측 반영본_한계돌파 최소 추가.csv'
+        file_path = r'C:\Users\LG\Desktop\2024\Capstone\데이터\실제 사용 데이터\최종\한계를 최소로\pv4_2022_final_최종_태양광 예측 반영본_한계돌파 최소 추가.csv'
         timezone = pytz.timezone('Asia/Seoul')
 
         error_count = 0  # 오류 카운트 변수
