@@ -1,64 +1,167 @@
 {% extends 'base.html' %}
 {% block content %}
-<br>
-<div class="containers">
-    <img src="/static/image/lamp_map.png" alt="map2" class="responsive-image" >
-</div>
+<style>
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+    .map-container {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .responsive-image {
+        width: 100%;
+        height: auto;
+    }
+    .info-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .left-section {
+        width: 48%;
+    }
+    .right-section {
+        width: 48%;
+        display: flex;
+        flex-direction: column;
+    }
+    .box-line {
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+    }
+    .capacity-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .capacity-table th, .capacity-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    .capacity-table th {
+        background-color: #f2f2f2;
+    }
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+    input:checked + .slider {
+        background-color: #2196F3;
+    }
+    input:checked + .slider:before {
+        transform: translateX(26px);
+    }
+</style>
 
-<br><br>
-
-<div class="containers">
-    <div class="left-images">
-        <section class ="box-line" >
-            <h3> 계절별 가로등 점등 시간 </h3>
-            <table class="capacity-table">
-                        <thead>
-                            <tr>
-                                <th>계절</th>
-                                <th>가로등 켜지는 시간</th>
-                                <th>가로등 꺼지는 시각</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>겨울</td>
-                                <td>17:00</td>
-                                <td>07:00</td>
-                            </tr>
-                            <tr>
-                                <td style="width:70px;">봄 / 가을</td>
-                                <td>18:00</td>
-                                <td>06:00</td>
-                            </tr>
-                            <tr>
-                                <td>여름</td>
-                                <td>20:00</td>
-                                <td>05:00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-        </section>
-        <br><br>
-        <section class ="box-line" >
-            <h3> 다음 가로등 점/소등 예상 시간 안내 </h3>
-            <p> 오늘 예상 가로등 점등 시간은 20:00이며, 소등 시간은 07:00이다. </p>
-        </section>
+<div class="container">
+    <div class="map-container">
+        <img src="/static/image/lamp_map2.png" alt="map" id="lampMap" class="responsive-image">
     </div>
-    <div class="right-image" style="width:50%">
-        <div class="left-images" style="width:30%">
-            <section class ="box-line">
-                <h3> 현재 가로등 점등 현황 </h3>
-                <p> 🟡 켜짐 | 총 400대 </p>
+
+    <div class="info-container">
+        <div class="left-section">
+            <section class="box-line">
+                <h3>계절별 가로등 점등 시간</h3>
+                <table class="capacity-table">
+                    <thead>
+                        <tr>
+                            <th>계절</th>
+                            <th>가로등 켜지는 시간</th>
+                            <th>가로등 꺼지는 시각</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>겨울</td>
+                            <td>17:00</td>
+                            <td>07:00</td>
+                        </tr>
+                        <tr>
+                            <td>봄 / 가을</td>
+                            <td>18:00</td>
+                            <td>06:00</td>
+                        </tr>
+                        <tr>
+                            <td>여름</td>
+                            <td>20:00</td>
+                            <td>05:00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section class="box-line">
+                <h3>다음 가로등 점/소등 예상 시간 안내</h3>
+                <p>오늘 예상 가로등 점등 시간은 20:00이며, 소등 시간은 07:00입니다.</p>
             </section>
         </div>
-        <div class="right-images" style="width:30%">
-            <section class ="box-line">
-                <h3> 가로등 강제 동작 </h3>
-                <p> * 관리자 권한 필요 </p>
+        <div class="right-section">
+            <section class="box-line">
+                <h3>현재 가로등 점등 현황</h3>
+                <p id="lampStatus">🔴 꺼짐 | 총 400대</p>
+            </section>
+            <section class="box-line">
+                <h3>가로등 강제 동작</h3>
+                <p>* 관리자 권한 필요</p>
+                <label class="switch">
+                    <input type="checkbox" id="streetlightToggle">
+                    <span class="slider"></span>
+                </label>
+                <p id="switchStatus">꺼짐</p>
             </section>
         </div>
     </div>
 </div>
-<br>
 
+<script>
+    const toggle = document.getElementById('streetlightToggle');
+    const status = document.getElementById('switchStatus');
+    const lampMap = document.getElementById('lampMap');
+    const lampStatus = document.getElementById('lampStatus');
+
+    toggle.addEventListener('change', function() {
+        if (this.checked) {
+            status.textContent = "켜짐";
+            lampMap.src = "/static/image/lamp_map.png";
+            lampStatus.textContent = "🟡 켜짐 | 총 400대";
+        } else {
+            status.textContent = "꺼짐";
+            lampMap.src = "/static/image/lamp_map2.png";
+            lampStatus.textContent = "🔴 꺼짐 | 총 400대";
+        }
+    });
+</script>
 {% endblock %}
